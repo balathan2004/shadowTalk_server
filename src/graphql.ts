@@ -2,14 +2,14 @@ import { createYoga } from "graphql-yoga";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { ChatModel, UserModel } from "./models/schema";
 import { ChatSchemaInterface, userDataInterface } from "./interfaces";
-import { ChatMessageInterface } from "./interfaces";
 
 const typeDefs = `
 type Query {
   hello: String
   userLists( myId: ID! ): [User]
   getChatAndUserCred(myId: ID!,receiverId:ID!):ChatAndUserCred
-   getChatList(myId: ID!): InboxResponse!
+  getChatList(myId: ID!): InboxResponse!
+  getUser(myId:ID!):User
 }
   type User {
     _id: ID!
@@ -39,6 +39,7 @@ type Query {
   type InboxResponse{
   contacts:[User]!
   }
+
 
   type ChatAndUserCred{
   receiverId:User!
@@ -92,6 +93,14 @@ const resolvers = {
         _id: { $in: ids },
       })) as userDataInterface[];
       return { contacts: allUsers };
+    },
+    getUser: async (_: any, args: { myId: string }) => {
+      console.log(args);
+      const _id = args.myId;
+
+      const user = (await UserModel.findOne({ _id: _id })) as userDataInterface;
+
+      return user
     },
   },
 };

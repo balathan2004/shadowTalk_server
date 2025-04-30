@@ -80,30 +80,38 @@ apiRoute.get(
   }
 );
 
+type OutgoingMessagePayload = {
+  msgData: ChatMessageInterface;
+  senderInfo: {
+    name: string;
+    profileUrl: string;
+  };
+};
+
 apiRoute.post(
   "/messages/store",
   async (req: Request, res: Response<ResponseConfig>) => {
-    const data = req.body as ChatMessageInterface;
+    const data = req.body as OutgoingMessagePayload;
 
-    console.log(data);
+    const { msgData } = data;
 
     try {
       if (!isEmptyOrNull(data)) {
         const doc = await ChatModel.findOneAndUpdate(
-          { _id: data._id },
+          { _id: msgData._id },
           {
             $setOnInsert: {
-              _id: data._id,
-              createdAt: data.createdAt,
-              members: [...data._id.split("@")],
+              _id: msgData._id,
+              createdAt: msgData.createdAt,
+              members: [...msgData._id.split("@")],
               //messages: [],
             },
-            $push: { messages: data },
+            $push: { messages: msgData },
           },
           { upsert: true, new: true }
         );
 
-        emitMessage(data.receiverId, data);
+        emitMessage(msgData.receiverId, data);
 
         res.json({ status: 200, message: "success" });
       }
@@ -113,6 +121,14 @@ apiRoute.post(
     }
   }
 );
+
+apiRoute.get("/hello", (req: Request, res: Response) => {
+  res.json({ message: "hello" });
+});
+
+apiRoute.get("/add_location", (req: Request, res: Response) => {
+  const { data } = req.body;
+});
 
 apiRoute.get("/test", (req: Request, res: Response) => {
   res.json({ status: 200, message: "success" });
@@ -126,7 +142,7 @@ const isEmptyOrNull = (obj: Record<string, any>): boolean => {
 
 const emitMessage = async (
   userId: string,
-  messageData: ChatMessageInterface
+  messageData: OutgoingMessagePayload
 ) => {
   //const users=getAllusers()
   const socketId = getUserSocketId(userId);
