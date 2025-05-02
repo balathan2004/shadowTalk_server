@@ -100,7 +100,7 @@ const resolvers = {
 
       const user = (await UserModel.findOne({ _id: _id })) as userDataInterface;
 
-      return user
+      return user;
     },
   },
 };
