@@ -33,8 +33,8 @@ apiRoute.post(
       res.cookie("shadowTalkUid", _id, {
         httpOnly: true,
         maxAge: 2592000000,
-        secure: false, // Works without HTTPS
-        sameSite: "lax",
+        secure: true, // Works without HTTPS
+        sameSite: "none",
       });
 
       res.json({
@@ -47,9 +47,10 @@ apiRoute.post(
     res.cookie("shadowTalkUid", _id, {
       httpOnly: true,
       maxAge: 2592000000,
-      secure: false, // Works without HTTPS
-      sameSite: "lax",
+      secure: true, // Works without HTTPS
+      sameSite: "none",
     });
+
     res.json({
       status: 200,
       message: "logged in",
