@@ -32,6 +32,13 @@ connectDB();
 app.use("/graphql", yoga);
 //app.use("/api", apiRoute);
 
+try {
+  app.use("/api", apiRoute);
+} catch (err) {
+  console.error("Error registering apiRoute:", err);
+}
+
+
 const server = createServer(app);
 
 export const io = new Server(server, {
