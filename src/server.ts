@@ -1,7 +1,7 @@
 import { createServer } from "http";
 import connectDB from "./db";
 import express from "express";
-import apiRoute from "./rest";
+const apiRoute=require('./rest')
 import { yoga } from "./graphql";
 import cors from "cors";
 import { Server } from "socket.io";
