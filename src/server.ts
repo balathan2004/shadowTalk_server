@@ -27,9 +27,10 @@ app.use(
 app.use(express.json());
 
 connectDB();
-app.use("/api", apiRoute);
+
 
 app.use("/graphql", yoga);
+app.use("/api", apiRoute);
 
 const server = createServer(app);
 
