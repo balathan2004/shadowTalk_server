@@ -1,6 +1,6 @@
 import { Response, Request, Router } from "express";
 import { ChatModel, UserModel } from "./models/schema";
-import { getAllusers, getUserSocketId, io } from "./server";
+import {  getUserSocketId, io } from "./server";
 import {
   AuthResponseConfig,
   ChatMessageInterface,
