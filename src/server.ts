@@ -1,7 +1,7 @@
 import { createServer } from "http";
 import connectDB from "./db";
 import express from "express";
-const apiRoute=require('./rest')
+import apiRoute from "./rest";
 import { yoga } from "./graphql";
 import cors from "cors";
 import { Server } from "socket.io";
@@ -33,7 +33,7 @@ app.use("/graphql", yoga);
 //app.use("/api", apiRoute);
 
 
-app.use("/api", apiRoute);
+app.use("/api", apiRoute.use());
 
 
 
