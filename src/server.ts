@@ -6,9 +6,10 @@ import { yoga } from "./graphql";
 import cors from "cors";
 import { Server } from "socket.io";
 import cookieParser from "cookie-parser";
-import cookie from "cookie";
+
 
 const app = express();
+const port =process.env.PORT || 4000
 app.use(cookieParser());
 app.use(
   cors({
@@ -61,6 +62,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(4000, "0.0.0.0", () => {
+server.listen(port, () => {
   console.log("GraphQL server running on http://localhost:4000/graphql");
 });
