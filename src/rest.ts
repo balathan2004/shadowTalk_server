@@ -8,9 +8,9 @@ import {
   userDataInterface,
 } from "./interfaces";
 const { generateUsername } = require("unique-username-generator");
-const apiRoute = Router();
+const apiroute = Router();
 
-apiRoute.post(
+apiroute.post(
   "/auth",
   async (req: Request, res: Response<AuthResponseConfig>) => {
     const { _id, displayName, email, photoUrl, createdAt } =
@@ -59,7 +59,7 @@ apiRoute.post(
   }
 );
 
-apiRoute.get(
+apiroute.get(
   "/loginCred",
   async (req: Request, res: Response<AuthResponseConfig>) => {
     console.log("requested");
@@ -89,7 +89,7 @@ type OutgoingMessagePayload = {
   };
 };
 
-apiRoute.post(
+apiroute.post(
   "/messages/store",
   async (req: Request, res: Response<ResponseConfig>) => {
     const data = req.body as OutgoingMessagePayload;
@@ -123,15 +123,15 @@ apiRoute.post(
   }
 );
 
-apiRoute.get("/hello", (req: Request, res: Response) => {
+apiroute.get("/hello", (req: Request, res: Response) => {
   res.json({ message: "hello" });
 });
 
-apiRoute.get("/add_location", (req: Request, res: Response) => {
+apiroute.get("/add_location", (req: Request, res: Response) => {
   const { data } = req.body;
 });
 
-apiRoute.get("/test", (req: Request, res: Response) => {
+apiroute.get("/test", (req: Request, res: Response) => {
   res.json({ status: 200, message: "success" });
 });
 
@@ -153,7 +153,7 @@ const emitMessage = async (
   io.to(socketId).emit("messageData", messageData);
 };
 
-export default apiRoute;
+export default apiroute;
 
 
 
