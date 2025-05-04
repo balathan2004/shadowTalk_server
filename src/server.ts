@@ -39,7 +39,7 @@ const server = createServer(app);
 export const io = new Server(server, {
   // ["http://localhost:5173","http://192.168.133.57:5173/"]
   cors: {
-    origin: "http://localhost:5173",
+    origin:   "https://shadow-talk-frontend.vercel.app",
     credentials: true,
   },
 });
