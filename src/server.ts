@@ -1,7 +1,7 @@
 import { createServer } from "http";
 import connectDB from "./db";
 import express from "express";
-import {apiroute} from "./rest";
+import { apiroute } from "./rest";
 import { yoga } from "./graphql";
 import cors from "cors";
 import { Server } from "socket.io";
@@ -28,14 +28,10 @@ app.use(express.json());
 
 connectDB();
 
-
 app.use("/graphql", yoga);
 //app.use("/api", apiroute);
 
-
 app.use("/api", apiroute);
-
-
 
 const server = createServer(app);
 

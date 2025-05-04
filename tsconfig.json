@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "ESNext",  // Change this from "CommonJS" to "ESNext"
-    "strict": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node"  // Ensures module resolution is compatible with Node.js
+    "target": "ES6",                         // Use modern JavaScript features
+    "module": "CommonJS",                   // Required for Node.js
+    "moduleResolution": "node",             // Resolve modules like Node.js
+    "outDir": "dist",                       // Output directory for compiled files
+    "rootDir": "src",                       // Source TypeScript files directory
+    "strict": true,                         // Enable all strict type checks
+    "esModuleInterop": true,                // Allow default import from CommonJS
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true                    // Skip type checking of declaration files
   },
-  "ts-node": {
-    "transpileOnly": true
-  }
+  "include": ["src"],                       // Include all TS files in src
+  "exclude": ["node_modules"]               // Exclude node_modules
 }
