@@ -16,6 +16,7 @@ const allowedOrigins = [
   "http://192.168.143.57:5173",
   "http://127.0.0.1:5173",
   "http://192.168.133.57:5173",
+  "https://shadow-talk-frontend.vercel.app"
 ];
 
 app.use(
