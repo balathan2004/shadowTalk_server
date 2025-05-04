@@ -33,7 +33,7 @@ app.use("/graphql", yoga);
 //app.use("/api", apiRoute);
 
 
-app.use("/api", apiRoute.use());
+app.use("/api", apiRoute);
 
 
 

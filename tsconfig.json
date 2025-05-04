@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "module": "CommonJS",
+    "module": "ESNext",  // Change this from "CommonJS" to "ESNext"
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node"  // Ensures module resolution is compatible with Node.js
   },
   "ts-node": {
     "transpileOnly": true
