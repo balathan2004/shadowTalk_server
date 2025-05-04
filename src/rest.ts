@@ -153,7 +153,7 @@ const emitMessage = async (
   io.to(socketId).emit("messageData", messageData);
 };
 
-export default apiroute;
+export {apiroute};
 
 
 
